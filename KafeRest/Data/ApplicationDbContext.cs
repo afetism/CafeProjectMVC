@@ -5,14 +5,16 @@ using Microsoft.Identity.Client;
 
 namespace KafeRest.Data;
 
-    public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-           
-        }
-
-        public DbSet<Category> Categories { get; set; }
 
     }
+
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Menu> Yemekler { get; set; }
+
+     
+}

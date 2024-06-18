@@ -1,0 +1,77 @@
+﻿@model KafeRest.Models.Menu
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h4>Edit Menu</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+       
+        <h4 class="text-success">Edit Menu</h4>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Images" class="control-label"></label>
+                <input asp-for="Images" class="form-control" type="file" />
+                <span asp-validation-for="Images" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Specialy" /> @Html.DisplayNameFor(model => model.Specialy)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <input type="submit" value="Edit" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-primary">Back to Menu</a>
+            </div>
+            
+        </form>
+    </div>
+    <div class="col-md-4">
+
+        @if (Model.Images==null)
+        {
+            <img src="~/Site/images/no-image-icon-23483.png" height="200" width="100" />
+        }
+        else
+        {
+            <img src="@Model.Images" height="300" width="250" />
+        }
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
