@@ -1,9 +1,9 @@
-﻿@model IEnumerable<KafeRest.Models.Menu> 
+﻿@model IEnumerable<KafeRest.Models.Menu>
 @{
-    ViewData["Title"] = "Index";
-	Layout = "~/Views/Shared/_ALayout.cshtml";
+    ViewData["Title"] = "CategoryDetails";
+    Layout = "~/Views/Shared/_ALayout.cshtml";
 }
-<!-- Slide1 -->
+
 <section class="section-slide">
 	<div class="wrap-slick1">
 		<div class="slick1">
@@ -19,7 +19,7 @@
 
 					<div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
 						<!-- Button1 -->
-						<a asp-area="Customer" asp-controller="Home" asp-action="Menu"  class="btn1 flex-c-m size1 txt3 trans-0-4">
+						<a asp-area="Customer" asp-controller="Home" asp-action="Menu" class="btn1 flex-c-m size1 txt3 trans-0-4">
 							Look Menu
 						</a>
 					</div>
@@ -72,49 +72,60 @@
 
 <!-- Gallery -->
 <div class="section-gallery p-t-20">
-	
-	
+
+
 	@await Component.InvokeAsync("CategoryList");
 
 
-	
+
 </div>
 
 <!-- Lunch -->
 <section class="section-lunch bgwhite">
-	
+
 
 	<div class="container">
 		<div class="row p-t-10">
-			@foreach(var item in Model)
+			@if (Model.Count() > 0)
 			{
-				<div class="col-md-12 col-lg-6">
-					<!-- Block3 -->
-					<div class="blo3 flex-w flex-col-l-sm m-b-30">
-						<div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-							<a><img src="@item.Images" alt="IMG-MENU" width="80" height="100"></a>
+				@foreach (var item in Model)
+				{
+					<div class="col-md-12 col-lg-6">
+						<!-- Block3 -->
+						<div class="blo3 flex-w flex-col-l-sm m-b-30">
+							<div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+								<a><img src="@item.Images" alt="IMG-MENU" width="80" height="100"></a>
+							</div>
+
+							<div class="text-blo3 size21 flex-col-l-m">
+								<a href="#" class="txt21 m-b-3">
+									@item.Title
+								</a>
+
+								<span class="txt23">
+									@item.Description
+								</span>
+
+								<span class="txt22 m-t-20">
+									@item.Price manat
+								</span>
+							</div>
 						</div>
 
-						<div class="text-blo3 size21 flex-col-l-m">
-							<a href="#" class="txt21 m-b-3">
-								@item.Title
-							</a>
-
-							<span class="txt23">
-								@item.Description
-							</span>
-
-							<span class="txt22 m-t-20">
-								@item.Price manat
-							</span>
-						</div>
 					</div>
-
-				</div>
+				}
 			}
-			
+			else
+			{
+				<div class="alert alert-warning text-center">
+					Don"t found any Menu
+		        </div>
 
-			
+			}
+
+
+
 		</div>
 	</div>
 </section>
+

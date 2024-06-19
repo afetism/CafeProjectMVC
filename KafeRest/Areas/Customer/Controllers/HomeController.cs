@@ -25,7 +25,9 @@ namespace KafeRest.Areas.Customer.Controllers
 
         public IActionResult Menu()
         {
-            return View();
+            var menu = _db.Yemekler.ToList();
+
+            return View(menu);
         }
 
         public IActionResult Reservation()
@@ -49,7 +51,13 @@ namespace KafeRest.Areas.Customer.Controllers
 
             return View();
         }
-        public IActionResult Contact()
+		public IActionResult CategoryDetails(int? id)
+		{
+            var menu = _db.Yemekler.Where(i=>i.CategoryId== id).ToList();
+			ViewBag.CategoryId = id;
+			return View(menu);
+		}
+		public IActionResult Contact()
         {
 
             return View();
