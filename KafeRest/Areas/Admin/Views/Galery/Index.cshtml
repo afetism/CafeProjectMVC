@@ -1,0 +1,43 @@
+﻿@model IEnumerable<KafeRest.Models.Galery>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary" >Create New</a>
+</p>
+<table class ="table >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.Image==null)
+                    {
+                        <img src="~/Site/images/no-image-icon-23483.png" width="100" height="80" />
+                    }
+                    else
+                    {
+                        <img src="@item.Image" width="100" height="80" />
+                    }
+                </td>
+                <td style="padding-left: 10px;">
+                    
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

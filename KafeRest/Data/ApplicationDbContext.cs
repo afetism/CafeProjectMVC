@@ -15,6 +15,9 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<Category> Categories { get; set; }
     public DbSet<Menu> Yemekler { get; set; }
+    public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<Galery> Galery { get; set; }
 
-     
+
 }
+

@@ -1,6 +1,8 @@
 using KafeRest.Data;
 using KafeRest.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 using System.Diagnostics;
 
 namespace KafeRest.Areas.Customer.Controllers
@@ -10,11 +12,13 @@ namespace KafeRest.Areas.Customer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
+        private readonly IToastNotification _toast;
 
-        public HomeController(ILogger<HomeController> logger,ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger,ApplicationDbContext db,IToastNotification toast)
         {
             _logger = logger;
             _db = db;
+            _toast = toast;
         }
 
         public IActionResult Index()
@@ -30,16 +34,35 @@ namespace KafeRest.Areas.Customer.Controllers
             return View(menu);
         }
 
+
+        public IActionResult Gallery()
+        {
+            var gallery = _db.Galery.ToList();
+            return View(gallery);
+        }
         public IActionResult Reservation()
         {
             return View();
         }
 
-        public IActionResult Gallery()
+        // POST: Admin/Reservation/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reservation([Bind("Id,Name,Email,PhoneNumber,Count,Clock,History")] Reservation reservation)
         {
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                _db.Add(reservation);
+                await _db.SaveChangesAsync();
+                _toast.AddSuccessToastMessage("Thanks you to Appolina Restaurant Customer!" +
+                                             " We are expecting you... ");
+                return RedirectToAction(nameof(Index));
+            }
+            return View(reservation);
         }
+
         public IActionResult About()
         {
 
