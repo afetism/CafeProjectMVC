@@ -1,0 +1,21 @@
+﻿@model IEnumerable<KafeRest.Models.Connection>
+
+@foreach(var item in Model)
+{
+	<ul class="m-b-70">
+		<li class="txt14 m-b-14">
+			<i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+			@item.Address
+		</li>
+
+		<li class="txt14 m-b-14">
+			<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+			(+994) @item.Phone
+		</li>
+
+		<li class="txt14 m-b-14">
+			<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+			@item.Email
+		</li>
+	</ul>
+}

@@ -43,14 +43,17 @@
 					<!-- Logo -->
 					<div class="logo">
 						<a href="index.html">
-							<img src="/Site/images/icons/logo.png" alt="IMG-LOGO" data-logofixed="/Site/images/icons/logo2.png">
+							<img src="/Site/images/cover.png" alt="IMG-LOGO" data-logofixed="/Site/images/cover.png">
 						</a>
 					</div>
 
 					<!-- Menu -->
 					<div class="wrap_menu p-l-45 p-l-0-xl">
 						<nav class="menu">
-							<ul class="main_menu">
+							@if(User.Identity.IsAuthenticated)
+							{
+								<ul class="main_menu">
+
 								<li>
 									<a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
 								</li>
@@ -68,25 +71,55 @@
 								</li>
 
 								<li>
-									<a asp-area="Customer" asp-controller="Home" asp-action="About">About</a>
+									<a asp-area="Admin" asp-controller="Yemek" asp-action="Index" target="_blank">Admin Panel</a>
 								</li>
+									<li >
+										<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+											<button type="submit" class="nav-link btn btn-link text-White">Logout</button>
+										</form>
+									</li>
+								</ul>
+							}
+							else
+							{
+								<ul class="main_menu">
 
-								<li>
-									<a asp-area="Customer" asp-controller="Home" asp-action="Blog">Blog</a>
-								</li>
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+									</li>
 
-								<li>
-									<a asp-area="Customer" asp-controller="Home" asp-action="Contact">Contact</a>
-								</li>
-							</ul>
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="Menu">Menu</a>
+									</li>
+
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="Reservation">Reservation</a>
+									</li>
+
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="Gallery">Gallery</a>
+									</li>
+
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="About">About</a>
+									</li>
+
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="Blog">Blog</a>
+									</li>
+
+									<li>
+										<a asp-area="Customer" asp-controller="Home" asp-action="Contact">Contact</a>
+									</li>
+								</ul>
+							}
+							
 						</nav>
 					</div>
 
 					<!-- Social -->
 					<div class="social flex-w flex-l-m p-r-20">
-						<a href="#"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
+						
 
 						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
 					</div>
@@ -132,55 +165,24 @@
 				<a asp-area="Customer" asp-controller="Home" asp-action="Reservation" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
 					Reservation
 				</a>
+
 			</li>
+			<br/>
+			@if(User.Identity.IsAuthenticated)
+			{
+				<li class="t-center m-b-33">
+					<a asp-area="Admin" asp-controller="Yemek" asp-action="Index" target="_blank" class="txt19">Admin Panel</a>
+				</li>
+				<li class="t-center">
+					<form class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+						<button type="submit" class="nav-link btn btn-link text-White">Logout</button>
+					</form>
+				</li>
+			}
 		</ul>
 
 		<!-- - -->
-		<div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-			<!-- - -->
-			<h4 class="txt20 m-b-33">
-				Gallery
-			</h4>
-
-			<!-- Gallery -->
-			<div class="wrap-gallery-sidebar flex-w">
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="/Site/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-					<img src="/Site/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-				</a>
-			</div>
-		</div>
+		
 	</aside>
 
 
@@ -198,24 +200,16 @@
 						Contact Us
 					</h4>
 
-					<ul class="m-b-70">
-						<li class="txt14 m-b-14">
-							<i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-							8th floor, 379 Hudson St, New York, NY 10018
-						</li>
-
-						<li class="txt14 m-b-14">
-							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-							(+1) 96 716 6879
-						</li>
-
-						<li class="txt14 m-b-14">
-							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-							contact@site.com
-						</li>
-					</ul>
+					@await Component.InvokeAsync("Connection")
 
 					<!-- - -->
+				
+				</div>
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					
+
 					<h4 class="txt13 m-b-32">
 						Opening Times
 					</h4>
@@ -233,107 +227,18 @@
 
 				<div class="col-sm-6 col-md-4 p-t-50">
 					<!-- - -->
-					<h4 class="txt13 m-b-33">
-						Latest twitter
-					</h4>
-
-					<div class="m-b-25">
-						<span class="fs-13 color2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</span>
-						<a href="#" class="txt15">
-							
-						</a>
-
-						<p class="txt14 m-b-18">
-							Activello is a good option. It has a slider built into that displays the featured image in the slider.
-							<a href="#" class="txt15">
-								https://buff.ly/2zaSfAQ
-							</a>
-						</p>
-
-						<span class="txt16">
-							21 Dec 2017
-						</span>
-					</div>
-
-					<div>
-						<span class="fs-13 color2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</span>
-						<a href="#" class="txt15">
-							
-						</a>
-
-						<p class="txt14 m-b-18">
-							Activello is a good option. It has a slider built into that displays
-							<a href="#" class="txt15">
-								https://buff.ly/2zaSfAQ
-							</a>
-						</p>
-
-						<span class="txt16">
-							21 Dec 2017
-						</span>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 p-t-50">
-					<!-- - -->
-					<h4 class="txt13 m-b-38">
-						Gallery
-					</h4>
+					
 
 					<!-- Gallery footer -->
-					<div class="wrap-gallery-footer flex-w">
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-04.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-04.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-08.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-						</a>
-
-						<a class="item-gallery-footer wrap-pic-w" href="/Site/images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
-							<img src="/Site/images/photo-gallery-thumb-12.jpg" alt="GALLERY">
-						</a>
+					<h4 class="txt13 m-b-32">
+						 Social Media
+					</h4>
+					<div class="p-t-5 p-b-5">
+						<a href="https://www.instagram.com/beueduaz/?hl=tr" target="_blank" class="fs-15 c-white"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+						<a href="https://www.facebook.com/beu.edu.az/?locale=tr_TR" target="_blank"  class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+						<a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
 					</div>
+					
 
 				</div>
 			</div>
@@ -342,14 +247,10 @@
 		<div class="end-footer bg2">
 			<div class="container">
 				<div class="flex-sb-m flex-w p-t-22 p-b-22">
-					<div class="p-t-5 p-b-5">
-						<a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-						<a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
-						<a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
-					</div>
+					
 
 					<div class="txt17 p-r-20 p-t-5 p-b-5">
-						Copyright &copy; 2018 All rights reserved  |  This template is made with <i class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						<a asp-area="Identity" asp-page="/Account/Login" target="_blank">Appolina Restaurant</a>
 					</div>
 				</div>
 			</div>

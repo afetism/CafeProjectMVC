@@ -1,4 +1,4 @@
-﻿
+﻿@model KafeRest.Models.Contact
 @{
     ViewData["Title"] = "Contact";
     Layout = "~/Views/Shared/_ALayout.cshtml";
@@ -28,7 +28,8 @@
 			Send us a Message
 		</h3>
 
-		<form class="wrap-form-reservation size22 m-l-r-auto">
+		<form class="wrap-form-reservation size22 m-l-r-auto" asp-action="Contact">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="row">
 				<div class="col-md-4">
 					<!-- Name -->
@@ -37,7 +38,8 @@
 					</span>
 
 					<div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name">
+						<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" asp-for="Name" placeholder="Name">
+						<span asp-validation-for="Name"></span>
 					</div>
 				</div>
 
@@ -48,7 +50,8 @@
 					</span>
 
 					<div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="Email">
+						<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" asp-for="Email" placeholder="Email">
+						<span asp-validation-for="Email"></span>
 					</div>
 				</div>
 
@@ -59,7 +62,8 @@
 					</span>
 
 					<div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-						<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="phone" placeholder="Phone">
+						<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" asp-for="Phone" placeholder="Phone">
+						<span asp-validation-for="Phone"></span>
 					</div>
 				</div>
 
@@ -68,7 +72,8 @@
 					<span class="txt9">
 						Message
 					</span>
-					<textarea class="bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3" name="message" placeholder="Message"></textarea>
+					<textarea class="bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3" asp-for="Message" placeholder="Message"></textarea>
+					<span asp-validation-for="Message"></span>
 				</div>
 			</div>
 
@@ -84,3 +89,8 @@
 	</div>
 </section>
 
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

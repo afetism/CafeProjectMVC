@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KafeRest.Data;
 using KafeRest.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KafeRest.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
